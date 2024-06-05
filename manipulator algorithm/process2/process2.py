@@ -25,6 +25,7 @@ send_start_pub = rospy.Publisher("start", Int32, queue_size=10)
 send_stop_pub = rospy.Publisher("stop", Int32, queue_size=10)
 send_value_pub = rospy.Publisher("done_value", String, queue_size=10)
 conv_start_pub = rospy.Publisher("start_conv", Int32, queue_size=10)
+conv_stop_pub = rospy.Publisher("stop_conv", Int32, queue_size=10)
 busy = False  # 동작 중인지 여부를 나타내는 플래그
 process_start = False
 count = 0
@@ -375,7 +376,7 @@ def step_callback(data):
                                 print("move to a box")
                                 move_to_pose(-14,10,2,71,-90,-16)
                                 time.sleep(0.5)
-                                move_to_pose(-97,-16,-42,-25, 92, -8) 
+                                move_to_pose(-101,-20,-36,-26, 92, -12) 
                                 time.sleep(0.5)
                                 move_to_zpose(6)
                                 time.sleep(0.5)
@@ -459,6 +460,10 @@ def step_callback(data):
                         time.sleep(0.5)
                         if count != 2:
                             conv_start_pub.publish(1)
+                            if A_count == 3 and B_count == 2:
+                                conv_stop_pub.publish(1)
+                            elif B_count == 3 and A_count == 2:
+                                conv_stop_pub.publish(1)
                             time.sleep(2)
                             print("send start signal")
                             send_start_pub.publish(1)
