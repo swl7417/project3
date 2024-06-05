@@ -1,1 +1,17 @@
-Using elephant robotic's myCobot320
+Using elephant robotic's mycobot_ros package and pymycobot libraries
+
+Change 
+mycobot_ros/myCobot320/new_mycobot_320/new_mycobot_320_moveit/config/fake_controllers
+mycobot_ros/myCobot320/new_mycobot_320/new_mycobot_320_moveit/config/firefighter.srdf
+mycobot_ros/myCobot320/new_mycobot_320/new_mycobot_320_moveit/config/joint_limits.yaml
+mycobot_ros/myCobot320/new_mycobot_320/new_mycobot_320_moveit/config/kinematics.yaml
+mycobot_ros/myCobot320/new_mycobot_320/new_mycobot_320_moveit/config/ompl_planning.yaml -> I use RRTConnect OMPL algorithm
+mycobot_ros/myCobot320/new_mycobot_320/new_mycobot_320_moveit/config/ros_controllers.yaml
+mycobot_ros/myCobot320/new_mycobot_320/new_mycobot_320_moveit/config/fake_controllers
+
+mycobot_ros/mycobot_320/mycobot_description/urdf/mycobot_320_m5_2022 -> add dae file.
+(I add my dae file)
+
+mycobot_ros/mycobot_320/mycobot_description/urdf/mycobot_320_m5_2022/new_mycobot_pro_320moveit_m5_2022.urdf
+
+
