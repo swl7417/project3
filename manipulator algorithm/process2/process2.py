@@ -364,7 +364,7 @@ def step_callback(data):
                                 print("move to a box")
                                 move_to_pose(-14,10,2,71,-90,-16)
                                 time.sleep(0.5)
-                                move_to_pose(-110, -18, -50, -11, 89, -20) 
+                                move_to_pose(-114, -27, -35, -15, 90, -19) 
                                 time.sleep(0.5)
                                 move_to_zpose(6)
                                 time.sleep(0.5)
