@@ -1,5 +1,7 @@
 Using elephant robotic's mycobot_ros package and pymycobot libraries
 
+activate launch file when you run process1 or process2
+
 Change 
 mycobot_ros/myCobot320/new_mycobot_320/new_mycobot_320_moveit/config/fake_controllers
 mycobot_ros/myCobot320/new_mycobot_320/new_mycobot_320_moveit/config/firefighter.srdf
