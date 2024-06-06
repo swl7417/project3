@@ -366,7 +366,7 @@ def move_to_abox():
     global busy
     busy = True  # 동작 시작
 
-    move_to_pose(-73,66,10,14,-92,13)
+    move_to_pose(-71,68,11,10,-91,15)
 
     busy = False  # 동작 종료
 
@@ -379,7 +379,7 @@ def move_to_bbox():
     global busy
     busy = True  # 동작 시작
 
-    move_to_pose(-126,64,9,15,-92,-39)
+    move_to_pose(-113,42,53,-7,-92,-25)
     
     busy = False  # 동작 종료
 
