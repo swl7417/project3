@@ -36,18 +36,18 @@ def main():
     global Avalue_received, Bvalue_received
     while not rospy.is_shutdown():
         try:
-            if Avalue_received:
-                Avalue_received = False
-                # "A" 메시지 송신
+            if Bvalue_received:
+                Bvalue_received = False
+                # "B" 메시지 송신
                 try:
                     message = "1"
                     print("Sending:", message)
                     client_socket.sendall(message.encode())
                 except Exception as e:
                     print("Error occurred:", str(e))
-            if Bvalue_received:
-                Bvalue_received = False
-                # "B" 메시지 송신
+            if Avalue_received:
+                Avalue_received = False
+                # "A" 메시지 송신
                 try:
                     message = "2"
                     print("Sending:", message)
