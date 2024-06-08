@@ -53,7 +53,7 @@ def main():
         try:
             if Bvalue_received:
                 Bvalue_received = False
-                # "A" 메시지 송신
+                # "B" 메시지 송신
                 try:
                     message = "1"
                     print("Sending:", message)
@@ -64,7 +64,7 @@ def main():
                     print("Error occurred:", str(e))
             if Avalue_received:
                 Avalue_received = False
-                # "B" 메시지 송신
+                # "A" 메시지 송신
                 try:
                     message = "2"
                     print("Sending:", message)
