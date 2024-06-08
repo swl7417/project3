@@ -101,7 +101,7 @@ def gripper_close(data):
 
 def gripper_open(data):
     rospy.loginfo("gripper open start")
-    mc.set_gripper_value(80,20)
+    mc.set_gripper_value(60,20)
     time.sleep(1)
     rospy.loginfo("open completed")
     completion_pub1.publish(Int32(1))
