@@ -57,7 +57,7 @@ def main():
                 try:
                     message = "1"
                     print("Sending:", message)
-                    # client_socket.sendall(message.encode())
+                    client_socket.sendall(message.encode())
                     time.sleep(5)
                     # keyboard_listener()
                 except Exception as e:
