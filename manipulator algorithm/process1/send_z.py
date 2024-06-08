@@ -18,36 +18,31 @@ def read_and_publish():
     global flag
     distance_str = ""
     if flag:
-        if ser.in_waiting > 0:
+        try:
+            ser.write(b'1')
+            print("get distance")
+            distance_str = ser.readline().decode('utf-8').strip()
+            
             try:
-                distance_str = ser.readline().decode('utf-8').strip()
-                
-                try:
-                    distance = float(distance_str)
-                    if distance < 150:
-                        real_distance = distance * 2
-                    elif distance < 260:
-                        real_distance = 260
-                    else:
-                        real_distance = distance + 15
-                    rospy.loginfo(f"Publishing distance: {real_distance}")
-                    z = real_distance / 20
-                    if z > 13.8:
-                        z = 13.8
-                    z_pub.publish(z)
-                
-                    rospy.loginfo("Received z data: %f", z)
-                    completion_pub.publish(Int32(1))
-                    flag = False
-                    print(flag)
-                    distance_str = ""
-                    distance = 0
-                    z = 0
-                    # keyboard_input()
-                except ValueError:
-                    rospy.logwarn("Received invalid data: %s", distance_str)
+                print("distance_str:",distance_str)
+                distance = int(distance_str) - 20
+                z = distance / 10 
+                if z > 14.2:
+                    z = 14.2
+                z_pub.publish(z)
+            
+                rospy.loginfo("Received z data: %f", z)
+                completion_pub.publish(Int32(1))
+                flag = False
+                print(flag)
+                distance_str = ""
+                distance = 0
+                z = 0
+                # keyboard_input()
             except ValueError:
-                rospy.logwarn(f"Received invalid data: {distance_str}")
+                rospy.logwarn("Received invalid data: %s", distance_str)
+        except ValueError:
+            rospy.logwarn(f"Received invalid data: {distance_str}")
 
 if __name__ == '__main__':
     # Initialize the ROS node
@@ -59,5 +54,4 @@ if __name__ == '__main__':
     ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
     time.sleep(2)
     rospy.Subscriber("get_z", Int32, flag_callback)
-
     rospy.spin()
