@@ -187,7 +187,7 @@ def move_to_failpose():
     global busy
     busy = True  # 동작 시작
 
-    move_to_pose(-20,0,101,-12,-88,-21)
+    move_to_pose(-22,-4,81,8,-86,-22)
     time.sleep(0.5)
     open_gripper()
     
@@ -408,7 +408,10 @@ def step_callback(data):
                         print("Moving to pose!")
                         move_to_goalpose(x, y, int(link6_angle))
                         time.sleep(0.5)
-                        move_gripper(int(gripper))
+                        if gripper < 45:
+                            move_gripper(int(gripper))
+                        else:
+                            move_gripper(65)    
                         time.sleep(0.5)
                         get_z_call_pub.publish(1)
                         while not z_state:
@@ -417,15 +420,18 @@ def step_callback(data):
                         if z_state:
                             print("Moving to z pose!")
                             time.sleep(0.5)
-                            move_to_zpose(float(z))
+                            if gripper < 20:
+                                move_to_zpose(14)
+                            else:
+                                move_to_zpose(float(z))
                             time.sleep(0.5)
                             print("move gripper!")
-                            if (gripper - 30) < 0:
-                                move_gripper(2)
+                            if gripper < 20:
+                                move_gripper(0)
                             elif gripper > 70:
                                 move_gripper(2)
                             else:
-                                move_gripper(int(gripper)-30)
+                                move_gripper(5)
                             time.sleep(0.5)
                             step += 1
                             z_state = False
