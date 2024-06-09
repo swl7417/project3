@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
   actionlib
   image_transport
   cv_bridge
-
   mycobot_communication
   mycobot_description
 )
@@ -74,8 +73,9 @@ catkin_install_python(PROGRAMS
   scripts/mycobot_320_following_marker.py
   scripts/mycobot_320_follow_and_pump.py
   scripts/mycobot_320_simple_gui.py
+  scripts/slider.py
+  scripts/project2_slider.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-
 )
 
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}

@@ -7,7 +7,6 @@ import fcntl
 from myarm_communication.srv import *
 
 from pymycobot.myarm import MyArm
-from pymycobot.myarmc import MyArmC
 
 mc = None
 
@@ -52,12 +51,12 @@ def release(lock_file_fd):
 
 def create_handle():
     global mc
-    rospy.init_node("myarmC")
+    rospy.init_node("myarm")
     rospy.loginfo("start ...")
     port = rospy.get_param("~port")
     baud = rospy.get_param("~baud")
     rospy.loginfo("%s,%s" % (port, baud))
-    mc = MyArmC(port, baud)
+    mc = MyArm(port, baud)
 
 
 def create_services():
@@ -79,7 +78,8 @@ def set_angles(req):
         req.joint_3,
         req.joint_4,
         req.joint_5,
-        req.endeffector,
+        req.joint_6,
+        req.joint_7,
     ]
     sp = req.speed
 

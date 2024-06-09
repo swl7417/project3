@@ -1,0 +1,23 @@
+<launch>
+    <!-- Launch main.py -->
+    <node name="main_node" pkg="process3" type="main.py" output="screen" />
+  
+    <!-- Launch step.py -->
+    <node name="step_node" pkg="process3" type="step.py" output="screen" />
+  
+    <!-- Launch send_z.py -->
+    <node name="send_z_node" pkg="process3" type="send_z.py" output="screen" />
+  
+    <!-- Launch barcode.py -->
+    <node name="barcode_node" pkg="process3" type="barcode.py" output="screen" />
+  
+    <!-- Launch process2.py -->
+    <node name="process2_node" pkg="process3" type="process2.py" output="screen" />
+  
+    <!-- Launch process2_conv.py -->
+    <node name="process2_conv_node" pkg="process3" type="process2_conv.py" output="screen" />
+  
+    <!-- Launch agv_socket.py -->
+    <node name="agv_socket_node" pkg="process3" type="agv_socket.py" output="screen" />
+  </launch>
+  

@@ -7,3 +7,20 @@ controller_list:
       - joint5_to_joint4
       - joint6_to_joint5
       - joint6output_to_joint6
+
+
+#plus
+
+  # - name: fake_gripper_group_controller
+  #   joints:
+  #     - gripper_controller
+  #     - gripper_base_to_gripper_left2
+  #     - gripper_left3_to_gripper_left1
+  #     - gripper_base_to_gripper_right3
+  #     - gripper_base_to_gripper_right2
+  #     - gripper_right3_to_gripper_right1
+# initial:  # Define initial robot poses per group
+#   - group: arm_group
+#     pose: init_pose
+  # - group: gripper_group
+  #   pose: init_gripper
