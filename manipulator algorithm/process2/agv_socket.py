@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import rospy
-from std_msgs.msg import Float64MultiArray, Int32, String
+from std_msgs.msg import String
 import socket
 import time
 
@@ -26,14 +26,29 @@ def send_value_callback(msg):
 # Subscriber 초기화
 rospy.Subscriber("done_value", String, send_value_callback)
 
-# 소켓 초기화
+#소켓 초기화
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address = ('172.30.1.29', 8080)
 print("Connecting to server at", server_address)
 client_socket.connect(server_address)
 
+# def keyboard_listener():
+#     global Avalue_received, Bvalue_received
+
+#     key = input("Press 'A' or 'B': ")
+#     if key == 'A':
+#         Avalue_received = True
+#         print("Avalue_received set to True")
+#         main()
+
+#     elif key == 'B':
+#         Bvalue_received = True
+#         print("Bvalue_received set to True")
+#         main()    
+
 def main():
     global Avalue_received, Bvalue_received
+
     while not rospy.is_shutdown():
         try:
             if Bvalue_received:
@@ -43,6 +58,8 @@ def main():
                     message = "1"
                     print("Sending:", message)
                     client_socket.sendall(message.encode())
+                    time.sleep(5)
+                    # keyboard_listener()
                 except Exception as e:
                     print("Error occurred:", str(e))
             if Avalue_received:
@@ -52,6 +69,8 @@ def main():
                     message = "2"
                     print("Sending:", message)
                     client_socket.sendall(message.encode())
+                    time.sleep(5)
+                    # keyboard_listener()
                 except Exception as e:
                     print("Error occurred:", str(e))
 
@@ -60,3 +79,4 @@ def main():
 
 if __name__ == '__main__':
     main()  # 메인 루프 실행
+    # keyboard_listener()
