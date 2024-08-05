@@ -7,19 +7,21 @@
 bool Avalue_received = false;
 bool Bvalue_received = false;
 
+using namespace std;
+
 boost::asio::io_service io_service;
 boost::asio::ip::tcp::socket socket(io_service);
 
 void send_value_callback(const std_msgs::String::ConstPtr& msg) {
     if (msg->data == "A") {
-        std::cout << "sending A signal to socket" << std::endl;
+        cout << "sending A signal to socket" << endl;
         if (!Avalue_received) {
             Avalue_received = true;
         }
     }
 
     if (msg->data == "B") {
-        std::cout << "sending B signal to socket" << std::endl;
+        cout << "sending B signal to socket" << endl;
         if (!Bvalue_received) {
             Bvalue_received = true;
         }
@@ -27,16 +29,16 @@ void send_value_callback(const std_msgs::String::ConstPtr& msg) {
 }
 
 void keyboard_listener() {
-    std::cout << "Press 'A' or 'B': ";
+    cout << "Press 'A' or 'B': ";
     char key;
-    std::cin >> key;
+    cin >> key;
 
     if (key == 'A') {
         Avalue_received = true;
-        std::cout << "Avalue_received set to True" << std::endl;
+        cout << "Avalue_received set to True" << endl;
     } else if (key == 'B') {
         Bvalue_received = true;
-        std::cout << "Bvalue_received set to True" << std::endl;
+        cout << "Bvalue_received set to True" << endl;
     }
 }
 
@@ -45,22 +47,22 @@ void main_loop() {
         try {
             if (Bvalue_received) {
                 Bvalue_received = false;
-                std::string message = "1";
-                std::cout << "Sending: " << message << std::endl;
+                string message = "1";
+                cout << "Sending: " << message << endl;
                 boost::asio::write(socket, boost::asio::buffer(message));
                 ros::Duration(5).sleep();
                 keyboard_listener();
             }
             if (Avalue_received) {
                 Avalue_received = false;
-                std::string message = "2";
-                std::cout << "Sending: " << message << std::endl;
+                string message = "2";
+                cout << "Sending: " << message << endl;
                 boost::asio::write(socket, boost::asio::buffer(message));
                 ros::Duration(5).sleep();
                 keyboard_listener();
             }
         } catch (std::exception& e) {
-            std::cerr << "Error occurred: " << e.what() << std::endl;
+            cerr << "Error occurred: " << e.what() << endl;
         }
     }
 }
