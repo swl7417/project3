@@ -8,6 +8,7 @@ bool Avalue_received = false;
 bool Bvalue_received = false;
 
 using namespace std;
+using namespace ros;
 
 boost::asio::io_service io_service;
 boost::asio::ip::tcp::socket socket(io_service);
@@ -50,7 +51,7 @@ void main_loop() {
                 string message = "1";
                 cout << "Sending: " << message << endl;
                 boost::asio::write(socket, boost::asio::buffer(message));
-                ros::Duration(5).sleep();
+                Duration(5).sleep();
                 keyboard_listener();
             }
             if (Avalue_received) {
@@ -58,20 +59,20 @@ void main_loop() {
                 string message = "2";
                 cout << "Sending: " << message << endl;
                 boost::asio::write(socket, boost::asio::buffer(message));
-                ros::Duration(5).sleep();
+                Duration(5).sleep();
                 keyboard_listener();
             }
-        } catch (std::exception& e) {
+        } catch (exception& e) {
             cerr << "Error occurred: " << e.what() << endl;
         }
     }
 }
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "step_publisher_node");
-    ros::NodeHandle nh;
+    init(argc, argv, "step_publisher_node");
+    NodeHandle nh;
 
-    ros::Subscriber sub = nh.subscribe("done_value", 1000, send_value_callback);
+    Subscriber sub = nh.subscribe("done_value", 1000, send_value_callback);
 
     boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string("172.30.1.29"), 8080);
     socket.connect(endpoint);
