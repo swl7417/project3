@@ -48,10 +48,10 @@ void read_and_publish() {
                 completion_msg.data = 1;
                 completion_pub.publish(completion_msg);
                 flag = false;
-            } catch (const std::invalid_argument& e) {
+            } catch (const invalid_argument& e) {
                 ROS_WARN("Received invalid data: %s", distance_str.c_str());
             }
-        } catch (const std::exception& e) {
+        } catch (const exception& e) {
             ROS_WARN("Error occurred: %s", e.what());
         }
     }
